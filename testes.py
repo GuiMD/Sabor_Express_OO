@@ -1,45 +1,36 @@
-class Pessoa:
-    def __init__(self, nome='', idade=0, profissao=''):
-        self.nome = nome
-        self.idade = idade
-        self.profissao = profissao
-
-    def __str__(self):
-        return f'{self.nome}, {self.idade} anos, {self.profissao}'
+class ContaBancaria:
+    def __init__(self, titular='', saldo='', ativo=False):
+        self._titular = titular
+        self._saldo = saldo
+        self._ativo = False
 
     @property
-    def saudacao(self):
-        if self.profissao:
-            return f'Olá, sou {self.nome}! Trabalho como {self.profissao}.'
-        else:
-            return f'Olá, sou {self.nome}!'
+    def titular(self):
+        return self._titular
 
-    def aniversario(self):
-        self.idade += 1
+    @property
+    def saldo(self):
+        return self._saldo
 
-# Criando 3 instâncias da classe Pessoa
-pessoa1 = Pessoa(nome='Alice', idade=25, profissao='Engenheira')
-pessoa2 = Pessoa(nome='Luiza', idade=30, profissao='Desenvolvedor')
-pessoa3 = Pessoa(nome='Jaque', idade=22)
+    @property
+    def ativo(self):
+        return self._ativo
+    
+    def __str__(self):
+        return f'Conta de {self.titular} - Saldo = R${self.saldo}'
+    
+    @classmethod
+    def ativar_conta(cls, self):
+        self._ativo = not self._ativo
+        return f'Conta = {self._ativo}'
+    
+conta1 = ContaBancaria("João", 1000)
+conta2 = ContaBancaria("Maria", 500)
+conta3 = ContaBancaria("Carlos", 200)
 
-# Imprimindo informações iniciais
-print("Informações Iniciais:")
-print(pessoa1)
-print(pessoa2)
-print(pessoa3)
-print()
+print(conta1)
+print(conta2)
+print(conta3)
 
-# Utilizando o método de instância aniversario para aumentar a idade de uma pessoa
-pessoa1.aniversario()
-pessoa3.aniversario()
-
-# Imprimindo informações após aniversário
-print("Informações após aniversário:")
-print(pessoa1)
-print(pessoa3)
-print()
-
-# Utilizando o método de classe saudacao para exibir mensagens personalizadas
-print(pessoa1.saudacao)
-print(pessoa2.saudacao)
-print(pessoa3.saudacao)
+ContaBancaria.ativar_conta(conta3)
+print(f'conta 3 atividade: {conta3.ativo}')
