@@ -20,11 +20,21 @@ livro2 = Livro("Data Science Fundamentals", "Jane Smith", 2020)
 
 print(livro1)
 print(livro2)
+print("")
 
 livro3 = Livro("Python Cookbook", "Samuel Developer", 2019)
 
 print(f"Antes de emprestar: Livro disponível? {livro3.disponivel}")
 livro3.emprestar()
-print(f"Depois de emprestar: Livro disponível? {livro3.disponivel}")
+print(f"Depois de emprestar: Livro disponível? {livro3.disponivel}\n")
 
-Livro.livros = [livro1, livro2, livro3] # Adicionando os livros à lista de livros
+Livro.livros = [livro1, livro2, livro3]    #Adicionando os livros à lista de livros
+
+livro_biblioteca = Livro("Python in Practice", "Emily Coder", 2021)
+print(f"Antes de emprestar (biblioteca): Livro disponível? {livro_biblioteca.disponivel}")
+livro_biblioteca.emprestar()
+print(f"Depois de emprestar (biblioteca): Livro disponível? {livro_biblioteca.disponivel}\n")
+
+ano_especifico = 2020
+livros_disponiveis_ano = Livro.verificar_disponibilidade(ano_especifico)
+print(f"Livros disponíveis em {ano_especifico}: {livros_disponiveis_ano}\n")
