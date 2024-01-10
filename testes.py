@@ -1,36 +1,30 @@
-class ContaBancaria:
-    def __init__(self, titular='', saldo='', ativo=False):
-        self._titular = titular
-        self._saldo = saldo
-        self._ativo = False
+class Livro:
+    def __init__(self, titulo, autor, ano_publicacao):
+        self.titulo = titulo
+        self.autor = autor
+        self.ano_publicacao = ano_publicacao
+        self.disponivel = True
 
-    @property
-    def titular(self):
-        return self._titular
-
-    @property
-    def saldo(self):
-        return self._saldo
-
-    @property
-    def ativo(self):
-        return self._ativo
-    
     def __str__(self):
-        return f'Conta de {self.titular} - Saldo = R${self.saldo}'
+        return f"Livro: {self.titulo} | Autor: {self.autor} | Ano de Publicação: {self.ano_publicacao}"
     
-    @classmethod
-    def ativar_conta(cls, self):
-        self._ativo = not self._ativo
-        return f'Conta = {self._ativo}'
-    
-conta1 = ContaBancaria("João", 1000)
-conta2 = ContaBancaria("Maria", 500)
-conta3 = ContaBancaria("Carlos", 200)
+    def emprestar(self):
+        self.disponivel = False
 
-print(conta1)
-print(conta2)
-print(conta3)
+    def verificar_disponibilidade(ano):
+        livros_disponiveis = [livro for livro in Livro.livros if livro.ano_publicacao == ano and livro.disponivel]
+        return livros_disponiveis
 
-ContaBancaria.ativar_conta(conta3)
-print(f'conta 3 atividade: {conta3.ativo}')
+livro1 = Livro("Aprendendo Python", "John Doe", 2022)
+livro2 = Livro("Data Science Fundamentals", "Jane Smith", 2020)
+
+print(livro1)
+print(livro2)
+
+livro3 = Livro("Python Cookbook", "Samuel Developer", 2019)
+
+print(f"Antes de emprestar: Livro disponível? {livro3.disponivel}")
+livro3.emprestar()
+print(f"Depois de emprestar: Livro disponível? {livro3.disponivel}")
+
+Livro.livros = [livro1, livro2, livro3] # Adicionando os livros à lista de livros
